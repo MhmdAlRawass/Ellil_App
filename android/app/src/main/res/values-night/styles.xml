@@ -1,0 +1,10 @@
+<resources>
+    <style name="LaunchTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/launch_background</item>
+    </style>
+
+    <style name="NormalTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">?android:colorBackground</item>
+        <item name="android:forceDarkAllowed">true</item> <!-- allow dark mode -->
+    </style>
+</resources>

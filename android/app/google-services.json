@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "136000759075",
+    "firebase_url": "https://ellil-37740-default-rtdb.firebaseio.com",
+    "project_id": "ellil-37740",
+    "storage_bucket": "ellil-37740.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:136000759075:android:b4a9cd0b2363aba82b5896",
+        "android_client_info": {
+          "package_name": "com.example.audio_app_example"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3drruX9xL08ZbP5wspdwJCu9A76JJpy8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
