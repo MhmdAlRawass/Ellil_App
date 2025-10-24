@@ -714,6 +714,37 @@ class AppLocalizations {
       AppLanguage.latin: 'Failed to purchase the book. Please try again.',
       AppLanguage.arabic: 'فشل في شراء الكتاب. يرجى المحاولة مرة أخرى.',
     },
+
+    'no_history_yet': {
+      AppLanguage.latin: 'No books in history yet',
+      AppLanguage.arabic: 'لا توجد كتب في السجل بعد',
+    },
+    // ----- Library Page -----
+
+    'no_purchased_books': {
+      AppLanguage.latin: 'No purchased books yet',
+      AppLanguage.arabic: 'لا توجد كتب تم شراؤها بعد',
+    },
+
+    'no_results_found': {
+      AppLanguage.latin: 'No results found',
+      AppLanguage.arabic: 'لم يتم العثور على نتائج',
+    },
+
+    'start_listening_to_see_books_here': {
+      AppLanguage.latin: 'Start listening to books and they will appear here.',
+      AppLanguage.arabic: 'ابدأ الاستماع إلى الكتب وستظهر هنا.',
+    },
+
+    'buy_audiobooks_to_see_them_here': {
+      AppLanguage.latin: 'Purchase audiobooks to see them listed here.',
+      AppLanguage.arabic: 'قم بشراء الكتب الصوتية لتظهر هنا.',
+    },
+
+    'browse_books': {
+      AppLanguage.latin: 'Browse Books',
+      AppLanguage.arabic: 'تصفح الكتب',
+    },
   };
 
   static String tr(String key, AppLanguage lang) {

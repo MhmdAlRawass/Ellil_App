@@ -94,11 +94,94 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
       });
     }
 
+    Widget buildEmptyState({
+      required BuildContext context,
+      required AppLanguage lang,
+      required IconData icon,
+      required String titleKey,
+      String? subtitleKey,
+      VoidCallback? onAction,
+    }) {
+      final theme = Theme.of(context);
+
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 60),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(28),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.primary.withOpacity(0.08),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  icon,
+                  size: 64,
+                  color: theme.colorScheme.primary.withOpacity(0.9),
+                ),
+              ),
+              const SizedBox(height: 28),
+              Text(
+                AppLocalizations.tr(titleKey, lang),
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 20,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              if (subtitleKey != null) ...[
+                const SizedBox(height: 8),
+                Text(
+                  AppLocalizations.tr(subtitleKey, lang),
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: Colors.grey,
+                    height: 1.4,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+              if (onAction != null) ...[
+                const SizedBox(height: 20),
+                FilledButton(
+                  onPressed: onAction,
+                  style: FilledButton.styleFrom(
+                    backgroundColor: theme.colorScheme.primary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 32, vertical: 12),
+                  ),
+                  child: Text(
+                    AppLocalizations.tr('browse_books', lang),
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+      );
+    }
+
     Widget buildHistoryWidget() {
       final filteredBooks = userBooks.where((bookHistory) {
         final bookName = bookHistory.book.name.toLowerCase();
         return bookName.contains(searchQuery);
       }).toList();
+
+      if (filteredBooks.isEmpty) {
+        return buildEmptyState(
+          context: context,
+          lang: lang,
+          icon: Icons.history_rounded,
+          titleKey: searchQuery.isEmpty ? 'no_history_yet' : 'no_results_found',
+          subtitleKey:
+              searchQuery.isEmpty ? 'start_listening_to_see_books_here' : null,
+        );
+      }
 
       return ListView.builder(
         itemCount: filteredBooks.length,
@@ -148,6 +231,22 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
         final bookName = bookHistory.name.toLowerCase();
         return bookName.contains(searchQuery);
       }).toList();
+
+      if (filteredBooks.isEmpty) {
+        return buildEmptyState(
+          context: context,
+          lang: lang,
+          icon: Icons.shopping_bag_outlined,
+          titleKey:
+              searchQuery.isEmpty ? 'no_purchased_books' : 'no_results_found',
+          subtitleKey:
+              searchQuery.isEmpty ? 'buy_audiobooks_to_see_them_here' : null,
+          // onAction: () {
+          //   // Example navigation to the book zone tab
+          //   Navigator.popUntil(context, (route) => route.isFirst);
+          // },
+        );
+      }
       return ListView.builder(
         itemCount: filteredBooks.length,
         itemBuilder: (ctx, index) {
